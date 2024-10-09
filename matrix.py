@@ -17,8 +17,19 @@ def transpose(matrixes = []):
     #print(transposed)
     return transposed
 
-#def matmul(matrix1 = [], matrix2 = []):
-#    pass
+def matmul(matrix1 = [], matrix2 = []):
+    new_matrix = []
+    #Behövs egentligen inte men är smidigt
+    matrix2 = transpose(matrix2)
+    for x in range(len(matrix1)):
+        new_matrix.append([])
+        for y in range(len(matrix2)):
+            sum = 0
+            for a in range(len(matrix1[x])):
+                sum+=matrix1[x][a]*matrix2[y][a]
+            new_matrix[x].append(sum) 
+    return new_matrix
+
 #def invert(matrix = []):
 #    pass
 #def loadtxt(filename = ""):
@@ -27,4 +38,10 @@ def transpose(matrixes = []):
 #    file.close()
 #    pass
 
-powers([1,2,3],3,5)
+
+
+matmul([[0,1]
+     ,[1,0]
+     ],[[1, 0]
+     ,[0,-1]
+     ])
