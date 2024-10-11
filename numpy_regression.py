@@ -17,35 +17,29 @@ def powers(list=[], pow1=0, pow2=5):
 
 def poly(a,x):
     Y2 = 0
-    print("x",x,type(x))
-
-    #print("a",a)
     for i in range(len(a)):
-        #print("AI grejen",a[i]*i)
         Y2 += a[i]*x**i
-    #print(Y2)
     return Y2
 
 def main():
-    #print(sys.argv)
-    data = loadtxt(sys.argv[1])
+    data = loadtxt(sys.argv[1]).transpose()
     n=int(sys.argv[2])
-    data=data.transpose()
     X=data[0]
     Y=data[1]
+
     Xp  = powers(X,0,n)
     Yp  = powers(Y,1,1)
     Xpt = Xp.transpose()
+
     a = matmul(linalg.inv(matmul(Xpt,Xp)),matmul(Xpt,Yp))
     a = a[:,0]
+
+    X2 = linspace(X[0],X[-1],int(((X[-1]-X[0]))/0.2))
+    Y2 = poly(a,X2)
+
+    #Shows the graphs
     plt.plot(X,Y,'ro')
-    print(((X[-1]-X[0]))/0.2)
-    steps = int(((X[-1]-X[0]))/0.2)
-    X2 = linspace(X[0],X[-1],steps)
-    print(X2)
-    Y2= poly(a,X2)
     plt.plot(X2,Y2)
-    print(X2,Y2)
     plt.show()
 
 if __name__ == "__main__":
