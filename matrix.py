@@ -59,6 +59,3 @@ def loadtxt(filename = ""):
         lines[i][1] = float(lines[i][1])
     file.close()
     return lines
-
-for i in range(4,7+1):
-    print(i)
