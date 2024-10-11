@@ -5,7 +5,7 @@ def powers(list=[], pow1=0, pow2=5):
         #Gör en ny rad som kommer bli inlagd i powerlist
         num_powers = []
         #Går igenom varje exponent
-        for i in range(pow1,pow2-pow1+1):
+        for i in range(pow1,pow2+1):
             #Lägger på varje exponent i num_powers
             num_powers.append(num**i)
         #Lägger till listan i powerlist
@@ -18,20 +18,19 @@ def powers(list=[], pow1=0, pow2=5):
 #Hade kunnat vara bättre 
 #if(len(transposed)==y) raden är rätt ful
 
-def transpose(matrixes = []):
+def transpose(matrix = []):
     transposed = []
-    for i in range(len(matrixes)):
-        for y in range(len(matrixes[0])):
+    for i in range(len(matrix)):
+        for y in range(len(matrix[0])):
             #Ifall indexet har slut på platser slängs en ny in
             if (len(transposed)==y): transposed.append([])
             #Slänger in talet i omvända indexet
-            transposed[y].append(matrixes[i][y])
+            transposed[y].append(matrix[i][y])
     return transposed
 
-#ifall någon läser det här, jag vette fan vad jag gjorde men det här funkar
+
 def matmul(matrix1 = [], matrix2 = []):
     new_matrix = []
-    #Transposar andra matrixet, behövs inte men är smidigt
     matrix2 = transpose(matrix2)
     for m1_rows in range(len(matrix1)):
         new_matrix.append([])
@@ -47,9 +46,8 @@ def matmul(matrix1 = [], matrix2 = []):
 def invert(matrix = [[0,0],[0,0]]):
     #Fett ful kod men det funkar
     det = matrix[0][0] * matrix[1][1] - matrix[0][1]*matrix[1][0]
-    return [
-        [matrix[1][1]/det,-matrix[0][1]/det],
-        [-matrix[1][0]/det,matrix[0][0]/det]]
+    return [[matrix[1][1]/det,-matrix[0][1]/det],
+            [-matrix[1][0]/det,matrix[0][0]/det]]
 
 #Fullösning på loadtxt, funkar men för många rader
 def loadtxt(filename = ""):
@@ -62,3 +60,5 @@ def loadtxt(filename = ""):
     file.close()
     return lines
 
+for i in range(4,7+1):
+    print(i)
