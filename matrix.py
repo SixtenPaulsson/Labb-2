@@ -1,31 +1,27 @@
 def powers(list=[], pow1=0, pow2=5):
     power_list = []
-    #Går igenom varje tal i listan
+    #Loops every number to be exponented
     for num in list:
         #Gör en ny rad som kommer bli inlagd i powerlist
         num_powers = []
-        #Går igenom varje exponent
+        #Loops through the range
         for i in range(pow1,pow2+1):
-            #Lägger på varje exponent i num_powers
+            #Adds every exponent to num_powers
             num_powers.append(num**i)
-        #Lägger till listan i powerlist
+        #Adds num_powers to power_list
         power_list.append(num_powers)
     return power_list
 
 
-#Transpose funktion
-
-#Hade kunnat vara bättre 
-#if(len(transposed)==y) raden är rätt ful
 
 def transpose(matrix = []):
     transposed = []
-    for i in range(len(matrix)):
-        for y in range(len(matrix[0])):
-            #Ifall indexet har slut på platser slängs en ny in
-            if (len(transposed)==y): transposed.append([])
-            #Slänger in talet i omvända indexet
-            transposed[y].append(matrix[i][y])
+    for height in range(len(matrix)):
+        for width in range(len(matrix[0])):
+            #Adds another index if needed
+            if (len(transposed)==width): transposed.append([])
+            #Switches around the numbers
+            transposed[width].append(matrix[height][width])
     return transposed
 
 
@@ -35,26 +31,32 @@ def matmul(matrix1 = [], matrix2 = []):
     for m1_rows in range(len(matrix1)):
         new_matrix.append([])
         for m2_coloumns in range(len(matrix2)):
-            #Gör en lambda funktion som gångrar 2 element
-            #Map går igenom varje par element och slänger in dom i lambda funktionen
-            #Summerar resultatet
+            #Creates a lambda function that multiplies 2 numbers
+            #Map loops through the list into the lambda function
+            #Summs the result
             summa = sum(map(lambda x,y: x*y , matrix1[m1_rows], matrix2[m2_coloumns]))
-            #Slänger in summan i raden
+            #Appens the summ into the list
             new_matrix[m1_rows].append(summa) 
     return new_matrix
 
 def invert(matrix = [[0,0],[0,0]]):
-    #Fett ful kod men det funkar
+    #Inverts the function
+    #Same code as in the canvas examples
     det = matrix[0][0] * matrix[1][1] - matrix[0][1]*matrix[1][0]
     return [[matrix[1][1]/det,-matrix[0][1]/det],
             [-matrix[1][0]/det,matrix[0][0]/det]]
 
-#Fullösning på loadtxt, funkar men för många rader
+#Loads the text
 def loadtxt(filename = ""):
+    #Opens the file
     file = open(filename)
+    #Reads all the lines
     lines = file.readlines()
+    #Loops the lines
     for i in range(len(lines)):
+        #Cleans upp the lines
         lines[i]=lines[i].strip("\n").split("\t")
+        #Converts both numbers into floats
         lines[i][0] = float(lines[i][0])
         lines[i][1] = float(lines[i][1])
     file.close()
