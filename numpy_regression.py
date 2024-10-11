@@ -22,7 +22,9 @@ def poly(a,x):
     return Y2
 
 def main():
+    #Loads the file
     data = loadtxt(sys.argv[1]).transpose()
+    #Loads the exponent
     n=int(sys.argv[2])
     X=data[0]
     Y=data[1]
